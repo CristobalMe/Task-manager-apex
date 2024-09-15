@@ -30,6 +30,9 @@ a01643070@tec.mx | 12345678
 
 ![image](https://github.com/user-attachments/assets/152f0659-6d47-48ff-9558-060f8085689a)
 
+![image](https://github.com/user-attachments/assets/e179d067-a831-4eca-9d96-de1f61906bfa)
+
+
 
 
 
