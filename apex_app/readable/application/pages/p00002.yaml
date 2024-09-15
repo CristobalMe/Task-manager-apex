@@ -1,0 +1,251 @@
+---
+# ====== Page: Calendario ====================================
+id: 2
+identification: 
+  name: Calendario
+  alias: CALENDARIO
+  title: Calendario
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+css: 
+  inline: |
+    .btmGC{
+        margin-bottom: 10px;
+    }
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Breadcrumb ==================================
+  id: 38784087660279051141
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 38782102733368036698
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Calendario ==================================
+  id: 38784088358571051142
+  identification: 
+    name: Calendario
+    type: Calendar
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: HABITO
+    include-rowid-column: false
+    where-clause: 'userName = :APP_USER'
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noUI
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  security: 
+    escape-special-characters: true
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      display-column: HABITNAME
+      start-date-column: STARTDATE
+      event-sorting: Automatic
+      show-time: false
+      multiple-line-events: true
+      show-tooltip: true
+      additional-calendar-views: 'list:navigation'
+      maximum-events-/-day: 10
+      show-weekend: true
+
+    performance: 
+      lazy-loading: false
+
+buttons: 
+- # ====== Button: CrearHabito =================================
+  id: 38749795049461540512
+  identification: 
+    button-name: CrearHabito
+    label: Crear hábito
+
+  layout: 
+    sequence: 20
+    region: Calendario # 38784088358571051142
+    slot: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: 11
+    new-column: true
+    column-span: 2
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--small
+    - t-Button--primary
+    - t-Button--simple
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:16:&SESSION.::&DEBUG.:::'
+      page: 16 # Crear Habito
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: GoogleCalender ==============================
+  id: 38846763627548995201
+  identification: 
+    button-name: GoogleCalender
+    label: Conectar con Google Calender
+
+  layout: 
+    sequence: 10
+    region: Calendario # 38784088358571051142
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - btmGC
+
+  behavior: 
+    action: Redirect to URL
+    target: 'https://accounts.google.com/o/oauth2/auth?client_id=502636112223-695r43hi6e2iht34l1is9236imkml6no.apps.googleusercontent.com&redirect_uri=https://apex.oracle.com/pls/apex/r/task_manager_apex/levelup/calendario&response_type=code&scope=https://www.googleapis.com/auth/calendar&access_type=offline'
+    execute-validations: true
+    warn-on-unsaved-changes: Do Not Check
+
+dynamic-actions: 
+- # ====== Dynamic Action: New =================================
+  id: 38924823473440678001
+  identification: 
+    name: New
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: GoogleCalender # 38846763627548995201
+
+  actions: 
+  - # ====== Action: Execute Server-side Code ====================
+    id: 38924823528160678002
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: |
+        SELECT APEX_INSTANCE_ADMIN.GET_PARAMETER('APEX_VERSION') AS APEX_VERSION FROM DUAL;
+        
+
+    execution: 
+      sequence: 10
+      event: New # 38924823473440678001
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+

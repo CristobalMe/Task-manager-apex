@@ -1,0 +1,135 @@
+---
+- # ====== REST Data Source: Predictor =========================
+  id: 38923728614847321503
+  identification: 
+    name: Predictor
+
+  subscription: 
+    version-number: 15569864050449
+
+  source: 
+    type: ORDS
+    remote-server: task-manager-apex-1-onrender-com # 38918321045076164013
+    url-path-prefix: predict
+
+  settings: 
+    returns-legacy-ords-json: false
+
+  rest-synchronization: 
+    job-is-active: false
+    local-table-owner: WKSP_TASKMANAGERAPEX
+    local-table-name: HABITO
+    type: Append
+    schedule: FREQ=DAILY;INTERVAL=1;BYHOUR=0;BYMINUTE=0;BYSECOND=0
+    http-request-limit: 1000
+
+  advanced: 
+    static-id: predictor
+    pass-ecid: Application Default
+
+  data-profiles: 
+    id: 38923727591849321502
+    identification: 
+      name: Predictor
+
+    data-profile: 
+      format: JSON
+      row-selector: items
+      contains-single-row: false
+      use-raw-selectors: false
+
+    advanced: 
+      encoding: Database Character Set
+
+    columns: 
+    - # ====== Column: COLUMN_1_ID =================================
+      id: 38923727703099321503
+      identification: 
+        column-name: COLUMN_1_ID
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: id
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 1
+        hidden: false
+
+    - # ====== Column: COLUMN_2_NAME ===============================
+      id: 38923728062451321503
+      identification: 
+        column-name: COLUMN_2_NAME
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 2000
+        primary-key: false
+
+      parsing: 
+        path-expression: name
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 2
+        hidden: false
+
+    - # ====== Column: COLUMN_3_HIREDATE ===========================
+      id: 38923728319586321503
+      identification: 
+        column-name: COLUMN_3_HIREDATE
+
+      source: 
+        type: Data
+        data-type: DATE
+        primary-key: false
+
+      parsing: 
+        path-expression: hire-date
+        format-mask: 'YYYY-MM-DD"T"HH24:MI:SS'
+        has-time-zone: false
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 3
+        hidden: false
+
+  operations: 
+  - # ====== Operation: Predict ==================================
+    id: 38923729270523321504
+    label: 
+      label: Predict
+
+    identification: 
+      name: Predict
+
+    operation: 
+      url-pattern: .
+      http-method: POST
+      database-operation: Insert Row
+      request-body-template: '{"StartDate": "2024-10-06T00:00:00", "Type": "Health & Fitness", "CurrStreak": 8}'
+
+  synchronization-steps: 
+  - # ====== Synchronization Step: Synchronization Step 1 ========
+    id: 38924750117244376159
+    identification: 
+      static-id: Synchronization Step 1
+
+    execution: 
+      sequence: 10
+      active: true
+

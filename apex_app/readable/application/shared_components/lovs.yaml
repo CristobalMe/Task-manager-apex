@@ -1,0 +1,40 @@
+---
+- # ====== List of Values: USUARIO.USERNAME ====================
+  id: 38807062615282066439
+  identification: 
+    name: USUARIO.USERNAME
+
+  subscription: 
+    version-number: 15569571971450
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: USUARIO
+
+  column-mapping: 
+    return: USERNAME
+    default-sort: USERNAME
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: HABITO.HABITNAME ====================
+  id: 38944079406184141336
+  identification: 
+    name: HABITO.HABITNAME
+
+  subscription: 
+    version-number: 15569901039131
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: HABITO
+
+  column-mapping: 
+    return: HABITID
+    display: HABITNAME
+    default-sort: HABITNAME
+    sort-direction: Ascending (Nulls Last)
+

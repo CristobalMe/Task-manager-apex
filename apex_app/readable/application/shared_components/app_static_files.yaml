@@ -1,0 +1,73 @@
+---
+- # ====== Static Application File: icons/app-icon-32.png ======
+  id: 38782793939989036902
+  identification: 
+    file-name: icons/app-icon-32.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-144-rounded.p
+  id: 38782794238072036903
+  identification: 
+    file-name: icons/app-icon-144-rounded.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-192.png =====
+  id: 38782794531002036903
+  identification: 
+    file-name: icons/app-icon-192.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-256-rounded.p
+  id: 38782794833726036903
+  identification: 
+    file-name: icons/app-icon-256-rounded.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-512.png =====
+  id: 38782795164787036904
+  identification: 
+    file-name: icons/app-icon-512.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: oracle-logo-1.svg ==========
+  id: 38839266979530803798
+  identification: 
+    file-name: oracle-logo-1.svg
+
+  attributes: 
+    mime-type: image/svg+xml
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: oracle.webp ================
+  id: 38844128378499211705
+  identification: 
+    file-name: oracle.webp
+
+  attributes: 
+    mime-type: image/webp
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: red-cloud-illustration.png =
+  id: 38860238413736805317
+  identification: 
+    file-name: red-cloud-illustration.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
