@@ -2,8 +2,8 @@
 [link](https://apex.oracle.com/pls/apex/r/task_manager_apex/levelup/login?session=100991508320718)
 
 ## Usuarios:
-cristobalmedina2004@gmail.com | 12345678
-arellanosantoso6@gmail.com | 12345678
+cristobalmedina2004@gmail.com | 12345678 \
+arellanosantoso6@gmail.com | 12345678 \
 a01643070@tec.mx | 12345678
 
 ## Features:
