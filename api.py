@@ -2,24 +2,14 @@ from flask import Flask, request, jsonify
 from joblib import load
 import numpy as np
 import pandas as pd
+import pickle
 
 app = Flask(__name__)
 
-# Load the model and scaler
-model = load('knn.joblib')
-scaler = load('scaler.joblib')
-one_hot_columns = [
-    "Health & Fitness",
-    "Personal Development",
-    "Productivity & Time Management",
-    "Social & Relationships",
-    "Financial Habits",
-    "Environmental Impact",
-    "Emotional Well-being",
-    "Work & Career",
-    "Creative & Hobbies",
-    "Spirituality & Reflection"
-]
+loaded_model = pickle.load(open('svm_model.sav', 'rb'))
+
+loaded_pre_processing = pickle.load(open('pre_processing.sav', 'rb'))
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -50,14 +40,12 @@ def predict():
         'CurrStreak': [curr_streak]
     })
 
-    input_data = scaler.fit_transform(input_data)
-    
-    prediction = model.predict(input_data)[0]
+    prediction = loaded_model.predict(input_data)
     
     if prediction == 1:
-        return False
+        return jsonify({'notification': False}), 200
     else:
-        return True
+        return jsonify({'notification': True}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
